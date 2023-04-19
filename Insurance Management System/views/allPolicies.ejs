@@ -1,0 +1,32 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container mt-5">
+    <h1>Policies</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Insured Item</th>
+          <th>Coverage Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% policies.forEach((policy) => { %>
+          <tr>
+            <td><%= policy.policy_id %></td>
+            <td><%= policy.policy_type %></td>
+            <td><%= policy.insured_item %></td>
+            <td><%= policy.coverage_amount %></td>
+            <td>
+              <a href="/edit/<%= policy.policy_id %>" class="btn btn-primary">Update</a>
+              <form method="POST" action="/policies/delete/<%= policy.policy_id %>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>

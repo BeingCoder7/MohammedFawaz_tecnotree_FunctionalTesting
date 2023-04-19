@@ -1,0 +1,31 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container mt-5">
+    <h1>Customers</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email Address</th>
+          <th>Phone Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.forEach((customer) => { %>
+          <tr>
+            <td><%= customer.customer_id %></td>
+            <td><%= customer.name %></td>
+            <td><%= customer.email_address %></td>
+            <td><%= customer.phone_number %></td>
+            <td>
+              <form method="POST" action="/customers/<%= customer.customer_id %>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>

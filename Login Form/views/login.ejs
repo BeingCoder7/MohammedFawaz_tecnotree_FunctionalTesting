@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+	<div class="container">
+		<form method="post" action="/login">
+            <%- include('flash-messages') %>
+			<h2>Login Form</h2>
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="text" class="form-control" id="username" name="username" onchange="onUsernameChange()" required>
+                <p id="checkUsername"></p>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" class="form-control" id="password" name="password" onchange="onPasswordChange()" required>
+				<small id="passwordHelpBlock" class="form-text">
+				    Your password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+				</small>
+				<div id="password-strength-meter">
+					<div id="password-strength-meter-fill"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" id="submit" value="Login" disabled>
+				<p><a href="/forget">Forgot password?</a></p>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script>
+		function onUsernameChange() {
+			if (username.length <= 5) {
+				checkUsername.innerHTML = "username length is less than 5";
+				checkUsername.style.color = "red";
+			}
+		}
+        function onPasswordChange() {
+    const password = document.getElementById("password").value;
+    const passwordHelpBlock = document.getElementById("passwordHelpBlock");
+    const submitButton = document.getElementById("submit");
+    
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
+    const isValidPassword = regex.test(password);
+    
+    if (isValidPassword) {
+        passwordHelpBlock.innerText = "Great! Your password meets the requirements.";
+        passwordHelpBlock.classList.add("text-success");
+        passwordHelpBlock.classList.remove("text-danger");
+        submitButton.disabled = false;
+    } else {
+        passwordHelpBlock.innerText = "Your password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        passwordHelpBlock.classList.add("text-danger");
+        passwordHelpBlock.classList.remove("text-success");
+        submitButton.disabled = true;
+    }
+        }
+</script>
+</html>

@@ -1,0 +1,29 @@
+<%- include('./partials/userBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+    <h2>Policy Purchase</h2>
+    <form action="/purchase/policy" method="post">
+      <div class="form-group">
+        <label for="type">Policy Type:</label>
+        <input type="text" class="form-control" id="item" placeholder="Enter Policy Type" name="policy_type">
+      </div>
+      <div class="form-group">
+        <label for="item">Insured Item:</label>
+        <input type="text" class="form-control" id="item" placeholder="Enter insured item" name="insured_item">
+      </div>
+      <div class="form-group">
+        <label for="amount">Coverage Amount:</label>
+        <input type="number" class="form-control" id="amount" placeholder="Enter coverage amount" name="coverage_amount">
+      </div>
+      <div class="form-group">
+        <label for="payment">Payment Method:</label>
+        <select class="form-control" id="payment" name="payment_method">
+          <option value="credit">Credit Card</option>
+          <option value="debit">Debit Card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  

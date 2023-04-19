@@ -1,0 +1,29 @@
+<%- include('./partials/adminBoilerplate') %>
+<title><%=title%></title>
+<div class="container">
+    <h1>Claims</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Claim ID</th>
+          <th>Claim Status</th>
+          <th>Claim Date</th>
+          <th>Claim Description</th>
+          <th>Policy ID</th>
+          <th>Customer ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% claims.forEach(claim => { %>
+          <tr>
+            <td><%= claim.claim_id %></td>
+            <td><%= claim.claim_status %></td>
+            <td><%= claim.claim_date %></td>
+            <td><%= claim.claim_description %></td>
+            <td><%= claim.policy_id %></td>
+            <td><%= claim.customer_id %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
